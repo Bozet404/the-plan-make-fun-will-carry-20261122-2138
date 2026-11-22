@@ -1,27 +1,27 @@
 #!/usr/bin/env python3
-"""Write the plan text to /output/entry.txt.
+"""Put one short plan for turning $100 into more money in /output/entry.txt.
 
-Deterministic: the same bytes on every run. No network, no randomness,
-no clock, no environment input. Creates /output only when it is missing
-(the grader mounts it); never deletes it. The plan itself is a fixed
-string constant, so the output cannot drift between runs.
+The text never changes, so each run writes the same bytes — run it twice and the file comes out identical.
+It uses only the standard library, reaches no network,
+reads no clock and no environment, and rolls no dice.
+The output folder is made only when it is absent; nothing is removed.
 """
 
 import os
 
 PLAN = (
-    "Day 1: find 30 local businesses with slow sites via Google Maps, "
-    "audit each free with PageSpeed, email the owner a 1-page fix list. "
-    "Sell the $49 fix, built by code overnight. "
-    "10 sales = $490 in 30 days. "
-    "Edge: the free audit opens doors cold pitches can't; outreach runs 24/7."
+    "Day 1: search Google Maps for 30 shops with slow sites, "
+    "run a PageSpeed check on each, and mail the owner a repair list. "
+    "Charge $49 for the fix, coded overnight. "
+    "Ten sales is $490 in 30 days, $100 untouched. "
+    "Free checks open doors cold pitches can't; outreach runs 24/7."
 )
 
 
-def main() -> None:
+def main():
     os.makedirs("/output", exist_ok=True)
-    with open("/output/entry.txt", "w", encoding="utf-8", newline="") as f:
-        f.write(PLAN)
+    with open("/output/entry.txt", "w", encoding="utf-8") as out:
+        out.write(PLAN)
 
 
 if __name__ == "__main__":
